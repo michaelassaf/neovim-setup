@@ -33,7 +33,7 @@ nmap <silent> <F10> :ALEFindReferences<CR>
 nmap <silent> <F11> <Plug>(ale_previous_wrap)
 nmap <silent> <F12> <Plug>(ale_next_wrap)
 
-call plug#begin('~/vimfiles/plugged')
+call plug#begin('./plugged')
 
 Plug 'rust-lang/rust.vim'
 Plug 'scrooloose/syntastic'
@@ -51,7 +51,8 @@ Plug 'joshdick/onedark.vim'
 Plug ‘sheerun/vim-polyglot’
 Plug 'OmniSharp/omnisharp-vim'
 " Use release branch (recommend)
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'neoclide/coc.nvim'
+Plug 'KarimElghamry/vim-auto-comment'
 
 call plug#end()
 
@@ -68,8 +69,16 @@ nnoremap <silent> <leader>fp :Telescope project<CR>
 nnoremap <silent> <leader>vf :NERDTreeToggle<CR>
 nnoremap <silent> <leader>gb :e#<CR>
 nnoremap <silent> <esc> :noh<CR>
+" Inline comment mapping
+vnoremap <silent> <leader>/ :AutoInlineComment<CR>
+nnoremap <silent> <leader>/ :AutoInlineComment<CR>
+
+let g:default_inline_comment = '//'
 
 colorscheme onedark
+
+set nocompatible              " be iMproved, required
+filetype off                  " required
 
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
@@ -82,3 +91,4 @@ Plugin 'VundleVim/Vundle.vim'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
+filetype plugin indent on    " required
